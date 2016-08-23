@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar primary>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content *ngIf="artist">
+
+  <ion-card *ngIf="artistInfo">
+    <ion-card-header>
+      <h1 class="primary">Bio</h1>
+    </ion-card-header>
+    <ion-card-content [innerHTML]="artistInfo">
+      Loading artist info...
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let album of albums">
+    <div style="position: relative">
+      <img src="{{ album.images[0].url }}" />
+      <button fab fab-right fab-top class="fab-map">
+        <ion-icon name="play"></ion-icon>
+      </button>
+    </div>
+    <ion-card-content>
+      <h2 class="card-title">{{ album.name }}</h2>
+      <p>{{ artist.name }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar primary>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <h1 class="center primary"><ion-icon name="headset"></ion-icon> Need music?</h1>
+    </ion-card-header>
+    <ion-card-content class="center">
+      Use this app to search for your fav artists...
+    </ion-card-content>
+  </ion-card>
+
+  <ion-searchbar placeholder="Search for artists" (ionInput)="searchSpotify($event)" (ionClear)="clearSearch($event)"></ion-searchbar>
+
+    <div style="margin: 0 auto; text-align: center;" *ngIf="searchResult && searchResult.length > 0">
+      <ion-grid>
+        <ion-row center>
+          <ion-col width-25 offset-25>
+            <button (click)="previousArtists()" [disabled]="disablePrevious" dark><ion-icon name="arrow-back"></ion-icon></button>
+          </ion-col>
+          <ion-col width-25>
+            <button (click)="nextArtists()" [disabled]="disableNext" dark><ion-icon name="arrow-forward"></ion-icon></button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <br>
+
+  <ion-list *ngIf="searchResult && searchResult.length > 0">
+
+    <ion-item *ngFor="let result of searchResult" (click)="navigate(result.id)">
+
+      <ion-avatar item-left *ngIf="result.images.length === 0">
+        <img src="https://www.pecaagora.com/frontend/web/assets/img/produtos/no-image.png" width="80" height="80">
+      </ion-avatar>
+
+      <ion-avatar item-left item-left *ngIf="result.images.length > 0">
+        <img src="{{ result.images[0].url }}">
+      </ion-avatar>
+      <h2>{{ result.name }}</h2>
+
+      <span *ngIf="result.genres && result.genres.length > 0">
+        <ion-badge>{{ result.genres[0] }}</ion-badge>
+      </span>
+
+      <button clear item-right (click)="navigate(result.id)">View</button>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

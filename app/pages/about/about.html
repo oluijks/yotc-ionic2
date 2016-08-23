@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar primary>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Year of the cat</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-tabs primary>
+  <ion-tab tabIcon="hammer" tabTitle="Api's / Tools" [root]="toolsTab"></ion-tab>
+  <ion-tab tabIcon="bicycle" tabTitle="Todos" [root]="todosTab"></ion-tab>
+  <ion-tab tabIcon="logo-github" tabTitle="GitHub" [root]="sourceTab"></ion-tab>
+</ion-tabs>
